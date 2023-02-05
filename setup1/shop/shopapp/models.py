@@ -21,6 +21,9 @@ class Product(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=444)
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Customer(models.Model):
     # we should give choices in upper case
