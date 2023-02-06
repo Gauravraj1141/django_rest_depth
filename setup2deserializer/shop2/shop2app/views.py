@@ -10,7 +10,7 @@ from django.db.models import Count
 
 
 @api_view(['GET', 'POST'])
-def AddProducts(request):
+def add_product(request):
     if request.method == "GET":
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
@@ -26,7 +26,7 @@ def AddProducts(request):
 # for adding , deleting , updating product data 
 
 @api_view(['GET', 'PUT', 'PATCH','DELETE'])
-def UpdateProd(request, id):
+def update_prod(request, id):
     proddata = get_object_or_404(Product, id=id)
     if request.method == "GET":
         serializer = ProductSerializer(proddata)
@@ -69,7 +69,7 @@ def mycollection(request):
 
 
 @api_view(['GET','PUT','PATCH','DELETE'])
-def updatecollection(request, col_id):
+def update_collection(request, col_id):
     coldetail = get_object_or_404(Collection.objects.annotate(product_count = Count("product_collection")),col_id = col_id)
 
     if request.method  == 'GET':
