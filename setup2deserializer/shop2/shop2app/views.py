@@ -23,7 +23,7 @@ def AddProducts(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-@api_view(['GET', 'PUT', 'PATCH'])
+@api_view(['GET', 'PUT', 'PATCH','DELETE'])
 def UpdateProd(request, id):
     proddata = get_object_or_404(Product, id=id)
     if request.method == "GET":
@@ -36,9 +36,15 @@ def UpdateProd(request, id):
         # print(serializer.data)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+        # in the patch method we can give a single attribute of our field and change that particular it saves bandwidth of our server 
     elif request.method == "PATCH":
         serializer = ProductSerializer(
             proddata, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == "DELETE":
+        proddata.delete()
+        return Response({"Deleted":"Successfully Deleted"} ,status=status.HTTP_204_NO_CONTENT)
+    
