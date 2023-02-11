@@ -22,5 +22,7 @@ urlpatterns = [
     # here we give paths for class base urls and generic urls 
         # here we can give path for generic class based view  and class base view seperately
     path("generic/" , include('shop2app.generic_urls'),name="generic"),
-    path("cls/" , include('shop2app.classbase_urls'),name="cls")
+    path("cls/" , include('shop2app.classbase_urls'),name="cls"),
+    path("viewset/" , include('shop2app.viewset_urls'),name="viewset"),
+
 ]
