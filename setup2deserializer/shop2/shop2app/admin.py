@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models  import Product  , Collection
+from .models  import Product  , Collection , Review
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -11,6 +11,13 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ['col_id', 'title', ]
+    
+
+ 
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'name', 'description', 'date', )
     
 
  

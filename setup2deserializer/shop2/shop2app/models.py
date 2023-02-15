@@ -11,3 +11,9 @@ class Product(models.Model):
 class Collection(models.Model):
     col_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=444)
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE , related_name='review')
+    name = models.CharField(max_length=333)
+    description = models.TextField()
+    date = models.DateField(auto_now_add=True)

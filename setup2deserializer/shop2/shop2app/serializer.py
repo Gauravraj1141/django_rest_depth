@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Collection
+from .models import Product, Collection , Review
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -16,3 +16,16 @@ class ICollectionSerializer(serializers.ModelSerializer):
 
     # here we should give  readonly true because when we post req then it will throw and error
     product_count = serializers.IntegerField(read_only=True)
+
+
+# reviews serializer 
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id','name','description','date' ]
+
+    def create(self, validated_data):
+        product_id = self.context['product_id']
+        product_instance = Product.objects.get(id  = product_id)
+        return Review.objects.create(product=product_instance , **validated_data)
