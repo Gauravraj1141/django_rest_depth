@@ -5,9 +5,12 @@ from decimal import Decimal
 # here we can create new serializer for colleciton class
 
 
-class CollectionSerializer(serializers.Serializer):
-    id = serializers.CharField(max_length=33)
-    title = serializers.CharField(max_length=34)
+class CollectionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Collection
+        fields = ['id','title']
+               
 
 
 
@@ -61,3 +64,5 @@ class ProductSerializer(serializers.ModelSerializer):
      
     def discount_p(self,product:Product):
         return "15 %"
+
+
