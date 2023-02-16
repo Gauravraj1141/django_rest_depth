@@ -12,7 +12,8 @@ from pprint import pprint
 
 # it is parent routers 
 router = routers.DefaultRouter()
-router.register("product",myview.ProductViewset)
+# here we need to give base name because we used getqueryset method in our product class
+router.register("product",myview.ProductViewset , basename='product')
 router.register("collection",myview.MyCollectionViewset)
 
 # here we create child routers
