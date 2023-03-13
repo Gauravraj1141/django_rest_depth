@@ -1,0 +1,53 @@
+{
+    "$ref": "#/definitions/FaqByType",
+    "definitions": {
+        "FaqByType": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "authentication_params": {
+                    "$ref": "#/definitions/AuthenticationParams"
+                },
+                "payload": {
+                    "$ref": "#/definitions/Payload"
+                }
+            },
+            "required": [
+                "authentication_params",
+                "payload"
+            ],
+            "title": "FaqByType"
+        },
+        "AuthenticationParams": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "user_profile_id": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "refresh_token",
+                "user_profile_id"
+            ],
+            "title": "AuthenticationParams"
+        },
+        "Payload": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "type_id": {
+                    "type": "string",
+                    "format": "integer"
+                }
+            },
+            "required": [
+                "type_id"
+            ],
+            "title": "Payload"
+        }
+    }
+}
